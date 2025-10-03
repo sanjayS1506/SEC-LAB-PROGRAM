@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        .slider {
+            text-align: center;
+            height: 400px;
+            width: 60%;
+            margin: auto;
+            position: relative;
+        }
+        .slider img {
+            height: 100%;
+            width: 100%;
+           object-fit: cover;
+            border-radius: 10px;
+        }
+        #prev, #next {
+            position: default;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .img{
+            border-radius: 50px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            height: 100px;
+            width: 100px;   
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="slider">
+        <img src="./forest-9685700_640.jpg" alt="forest" id="displayImg" class="img"> 
+        <button id="prev">Previous</button>
+        <button id="next">Next</button>
+    </div>
+
+
+    <script>
+        let images = [ "forest-9685700_640.jpg","kackar-mountains-9655199_640.jpg","island-2722471_1280.webp"];
+        let currentIndex = 0;
+
+        let displayImg = document.getElementById("displayImg");
+        let prevBtn = document.getElementById("prev");
+        let nextBtn = document.getElementById("next");
+
+        nextBtn.addEventListener("click" ,()=>{
+            currentIndex=(currentIndex + 1) % images.length;
+            displayImg.src = images[currentIndex];
+        })
+        prevBtn.addEventListener("click" ,()=>{
+            currentIndex=(currentIndex - 1 + images.length) % images.length;
+            displayImg.src = images[currentIndex];
+        })
+        setInterval(() => {
+            currentIndex=(currentIndex + 1) % images.length;
+            displayImg.src = images[currentIndex];
+        }, 2000);
+    </script>
+</body>
+</html>
